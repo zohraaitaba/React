@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const name = 'Fiorella';
+        const user = {
+            name: 'Fiorella',
+            photo: 'https://i.pravatar.cc/300',
+            year: 2019,
+        };
+
+        const age = (year) => 2023 - year;
+        const people = ['Fiorella', 'Marina' /* , <li>Matthieu</li> */];
+        const title = <h2> Liste des gens </h2>;
+
+        //Un composant React (une balsie html en fin de compte)
+        // {name} est la même chose que props et props.name (Destructuration)
+        function Welcome({ name, age }) {
+
+            if (age) {
+                return <h1> Bonjour{name ? name : 'inconnu'}, tu as {age} ans </h1>;
+            }
+            return (
+                <div>
+                    {/* condition à la volée */}
+               {name && <h1>Bonjour {name} </h1>}
+            </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        const content = () => {
+            root.render(
+                <div>
+                    <Welcome name="Fiorella" age="4" /> /* on a appelé la fonction Welcome */
+                    <Welcome name="toto" />
+                    {/* un commentaire en JSX */}
+                    <h1>Hello {user.name}, tu as {age(2019)} ans</h1>
+                    <img src={user.photo} alt="{user.name}" className="image" style={{ borderRadius: '50%' }} />
+                    <p>Il est {new Date().toLocaleTimeString()} </p>
+                    {title}
+                    <ul>
+                        {people.map(person =>
+                            <li>{person}</li>
+                        )}
+                    </ul>
+                </div>
+            );
+        }
+        content(); //Affiche le rendu une fois
+        setInterval(content, 1000); //Mets à jour le rendu toutes les secondes
+
+    </script>
+
+</body>
+
+</html>
