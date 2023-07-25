@@ -16,7 +16,7 @@ function Text() {
     return ( 
         <>
         <button onClick={()=>toggleName('Fiorella')}
-        className={ name === 'Fiorella' && 'selected'}>  {/* {name==='fiorella'? 'selected' : ''}> */}
+        className= {name==='fiorella'? 'selected' : ''}>  {/* { name === 'Fiorella' && 'selected'}>  */}
             Fiorella
         </button>
        
